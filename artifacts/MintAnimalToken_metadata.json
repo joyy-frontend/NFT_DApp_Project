@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.12+commit.f00d7308"
+		"version": "0.8.7+commit.e28d00a7"
 	},
 	"language": "Solidity",
 	"output": {
@@ -84,6 +84,25 @@
 				],
 				"name": "Transfer",
 				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "animalTypes",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
 				"inputs": [
@@ -569,11 +588,11 @@
 			]
 		},
 		"MintAnimalToken.sol": {
-			"keccak256": "0x3bfecdd9aaf342bfaba9fd84d39568d9357bddd7537f5ac95df65af45b719be0",
+			"keccak256": "0x611c8e73c9a02ff0341f3666f52aa27631c7681eedddc9a7e06f3e3f3a941394",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bb06df2e796b9b66f4cc5e5e703073b0ee5b5e9e048e9710e52539f6d22eb976",
-				"dweb:/ipfs/QmXkLeU4HQQ5QhsZf5NaV6eTLtst1GXfue88qSFDSZ493s"
+				"bzz-raw://f4f4d418537462827158350a20ebe42747aeb6f0a3858fc0d51b926e4810895e",
+				"dweb:/ipfs/QmdthDquPBdopFgaZ2cBKQgcJ3VsPriKjkCf9xJPvgBFTz"
 			]
 		}
 	},
