@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.12+commit.f00d7308"
 	},
 	"language": "Solidity",
 	"output": {
@@ -588,11 +588,11 @@
 			]
 		},
 		"MintAnimalToken.sol": {
-			"keccak256": "0x611c8e73c9a02ff0341f3666f52aa27631c7681eedddc9a7e06f3e3f3a941394",
+			"keccak256": "0x20e07c466b2d9e806ddf7d6ee163bc1dc703dcf5b3d17ba4399ec1cb9f03e158",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f4f4d418537462827158350a20ebe42747aeb6f0a3858fc0d51b926e4810895e",
-				"dweb:/ipfs/QmdthDquPBdopFgaZ2cBKQgcJ3VsPriKjkCf9xJPvgBFTz"
+				"bzz-raw://3803b6b9477a50530f4fd80924b2f83f9a0c413ca89343259b61f4ddab808034",
+				"dweb:/ipfs/QmdD3RBmqRLcXu1vfn6s6jxfkcCSQLAaSqLCkKVWu6b1qZ"
 			]
 		}
 	},
