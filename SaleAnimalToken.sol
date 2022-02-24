@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 import "MintAnimalToken.sol";
 
 contract SaleAnimalToken {
-    MintAnimalToken public mintAnimalTokenAddress;
+    MintAnimalToken public mintAnimalTokenAddress;  // MintAnimalToken을 deploy하면 배포한 주소값이 나오는데 그값을  MintAnimalToken 변수에 담는다. (아래 생성자를 통해서 담는다)
 
     constructor(address _mintAnimalTokenAddress) {
         mintAnimalTokenAddress = MintAnimalToken(_mintAnimalTokenAddress);
