@@ -26,4 +26,34 @@ contract SaleAnimalToken {
 
         onSaleAnimalTokenArray.push(_animalTokenId);    // 판매중인 토큰은 푸시.
     } 
+
+    function purchaseAnimalToken(uint256 _animalTokenId) public payable {
+        uint256 price = animalTokenPrices[_animalTokenId];
+        address animalTokenOwner = mintAnimalTokenAddress.ownerOf(_animalTokenId);
+
+        require(price > 0, "Animal token not sale.");
+        require(price <= msg.value, "Caller sent lower than price.");   // 함수실행할때 보내는 매틱의 양 (msg.value)
+        require(animalTokenOwner != msg.sender, "Caller is animal token owner.");
+
+        payable(animalTokenOwner).transfer(msg.value);  // owner에게 돈을 보내진다.
+
+        // nft 카드는 돈을 지불한 사람에게 준다 (소유권 이전) *보내는사람, 받는사람, 뭘보내는지
+        mintAnimalTokenAddress.safeTransferFrom(animalTokenOwner, msg.sender, _animalTokenId);
+        
+        // mapping에서 제거
+        animalTokenPrices[_animalTokenId] = 0;  //가격을 0으로 셋팅
+
+        // 판매중인 목록에서 제거
+        for(uint256 i = 0; i < onSaleAnimalTokenArray.length; i++) {
+            if(animalTokenPrices[onSaleAnimalTokenArray[i]] == 0) { // 가격이 0원인걸 찾아 제거
+                onSaleAnimalTokenArray[i] = onSaleAnimalTokenArray[onSaleAnimalTokenArray.length -1];
+                onSaleAnimalTokenArray.pop();
+            }
+        }
+    }
+
+    // 판매중인 토큰 배열의 길이
+    function getOnSaleAnimalTokenArrayLength() view public returns (uint256) {
+        return onSaleAnimalTokenArray.length;
+    }
 } 
