@@ -6,6 +6,7 @@ import Main from "./routes/main";
 const App: FC = () => {
   const [account, setAccount] = useState<string>("");
 
+  // 메타마스크를 통해서 계정을 가져오는 함수
   const getAccount = async() => {
     try {
       if(window.ethereum) {
@@ -17,7 +18,7 @@ const App: FC = () => {
         alert("Install Metamask!");
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
   useEffect(() => {
