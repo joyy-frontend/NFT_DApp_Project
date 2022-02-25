@@ -2,4 +2,5 @@
 
 ## web3 boilerplate for ReactTS
 
-220106 - first commit
+
+web3.js 연동
