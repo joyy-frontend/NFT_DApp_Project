@@ -1,7 +1,7 @@
-import { Grid } from '@chakra-ui/react';
+import { Button, Flex, Grid, Text } from '@chakra-ui/react';
 import React, { FC, useEffect, useState } from 'react';
 import AnimalCard from '../components/AnimalCard';
-import { mintAnimalTokenContract } from '../contracts';
+import { mintAnimalTokenContract, saleAnimalTokenAddress } from '../contracts';
 
 interface MyAnimalProps {
     account: string;
@@ -9,6 +9,7 @@ interface MyAnimalProps {
 
 const MyAnimal: FC<MyAnimalProps> = ({ account }) => {
     const [animalCardArray, setAnimalCardArray] = useState<string[]>();
+    const [saleStatus, setSaleStatus] = useState<boolean>(false);
 
     const getAnimalTokens = async() => {
         try {
@@ -28,8 +29,37 @@ const MyAnimal: FC<MyAnimalProps> = ({ account }) => {
         }
     };
 
+    const getIsApprovedForAll = async() => {
+        try {
+            const response = await mintAnimalTokenContract.methods.isApprovedForAll(account, saleAnimalTokenAddress).call();
+            
+            if(response) {
+                setSaleStatus(response);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const onClickApproveToggle = async() => {
+        try {
+            if(!account) return;
+
+            const response = await mintAnimalTokenContract.methods.setApprovalForAll(saleAnimalTokenAddress, !saleStatus).send({ from: account });
+
+            if(response.status) {
+                setSaleStatus(!saleStatus);
+            }
+            
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     useEffect(() => {
         if(!account) return;
+        
+        getIsApprovedForAll();
         getAnimalTokens();    
     },[account]);
 
@@ -38,13 +68,19 @@ const MyAnimal: FC<MyAnimalProps> = ({ account }) => {
     },[animalCardArray]);
 
     return (
-        <Grid templateColumns="repeat(4, 1fr)" gap={8}>
-            {
-                animalCardArray && animalCardArray.map((v, i) => {
-                    return <AnimalCard key={i} animalType={v} />
-                })
-            }
-        </Grid>
+        <>
+            <Flex alignItems="center">
+                <Text display="inline-block">Sale Status : {saleStatus ? "True" : "False"} </Text>
+                <Button size="xs" ml={2} colorScheme={saleStatus ? "red" : "blue"} onClick={onClickApproveToggle}>{saleStatus ? "Cancel" : "Approve"}</Button>
+            </Flex>
+            <Grid templateColumns="repeat(4, 1fr)" gap={8} mt={4}>
+                {
+                    animalCardArray && animalCardArray.map((v, i) => {
+                        return <AnimalCard key={i} animalType={v} />
+                    })
+                }
+            </Grid>
+        </>
     )
 }
 
