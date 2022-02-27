@@ -18,7 +18,7 @@ const MyAnimal: FC<MyAnimalProps> = ({ account }) => {
 
             for(let i = 0; i < parseInt(balanceLength, 10); i++) {
                 const animalTokenId = await mintAnimalTokenContract.methods.tokenOfOwnerByIndex(account, i).call();
-                const animalType = await mintAnimalTokenContract.methods.animalTypes(animalTokenId).call();
+                const animalType = await mintAnimalTokenContract.methods.animalTypes(animalTokenId).call(); // NFT 카드 번호 반환
 
                 tempAnimalCardArray.push(animalType);
             }
