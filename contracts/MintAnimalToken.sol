@@ -37,10 +37,9 @@ contract MintAnimalToken is ERC721Enumerable {
             uint256 animalTokenId = tokenOfOwnerByIndex(_animalTokenOwner, i);
             uint256 animalType = animalTypes[animalTokenId];
             uint256 animalPrice = saleAnimalToken.getAnimalTokenPrice(animalTokenId);
-
+            
             animalTokenData[i] = AnimalTokenData(animalTokenId, animalType, animalPrice);
         }
-
         return animalTokenData;
     }
 

@@ -650,11 +650,11 @@
 			]
 		},
 		"MintAnimalToken.sol": {
-			"keccak256": "0x060a55cdc25c1881faeba0f72e8630c45cc2d4171cdcf7dbf3354e6887acc4d2",
+			"keccak256": "0x39eb99b37940d23a38fdf0c3f8edde5e55d3422c1c80d178f2fe7b9fa7efb442",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2774a70c5286dd51b4d5c4b368a7ce11cbedbf4553f30d102f0153d410ecb7aa",
-				"dweb:/ipfs/QmPuV5DjGDD4qZku4vqbapntM4ifrYWDUk3GjWBLuG5Gr5"
+				"bzz-raw://397821993210920a83234dedc133a1928cefdd42f91e088bfc171d3fb4b7a19f",
+				"dweb:/ipfs/Qmck8fERavDQPX2Y1vaDGDtEFaaVGocXDBBzju8PmUAhNY"
 			]
 		},
 		"SaleAnimalToken.sol": {
