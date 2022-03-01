@@ -48,9 +48,10 @@ const MyAnimalCard: FC<MyAnimalCardProps> = ({
 
     return (
         <Box textAlign="center" w={150}>
-            <AnimalCard animalType={animalType}/>
+            <AnimalCard animalType={animalType} />
             <Box mt={2}>
-                {myAnimalPrice === "0" ? (
+                { console.log(myAnimalPrice) }
+                { myAnimalPrice === "0" ? (
                 <>
                     <InputGroup>
                         <Input 
@@ -68,7 +69,7 @@ const MyAnimalCard: FC<MyAnimalCardProps> = ({
                         <Text display="inline-block">
                             { web3.utils.fromWei(myAnimalPrice)} Matic
                         </Text>
-                        )}
+                    )}
             </Box>
         </Box>
     )

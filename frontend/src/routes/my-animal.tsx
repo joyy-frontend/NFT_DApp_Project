@@ -2,7 +2,7 @@ import { Button, Flex, Grid, Text } from '@chakra-ui/react';
 import React, { FC, useEffect, useState } from 'react';
 import AnimalCard from '../components/AnimalCard';
 import MyAnimalCard, { IMyAnimalCard } from '../components/MyAnimalCard';
-import { mintAnimalTokenContract, saleAnimalTokenAddress, saleAnimalTokenContract } from '../contracts';
+import { mintAnimalTokenContract, saleAnimalTokenAddress } from '../contracts';
 
 interface MyAnimalProps {
     account: string;
@@ -16,15 +16,20 @@ const MyAnimal: FC<MyAnimalProps> = ({ account }) => {
         try {
             const balanceLength = await mintAnimalTokenContract.methods.balanceOf(account).call();
             
-            const tempAnimalCardArray = [];
+            if (balanceLength === "0") return;
+            const tempAnimalCardArray: IMyAnimalCard[] = [];
 
-            for(let i = 0; i < parseInt(balanceLength, 10); i++) {
-                const animalTokenId = await mintAnimalTokenContract.methods.tokenOfOwnerByIndex(account, i).call();
-                const animalType = await mintAnimalTokenContract.methods.animalTypes(animalTokenId).call(); // NFT 카드 번호 반환
-
-                const animalPrice = await saleAnimalTokenContract.methods.animalTokenPrices(animalTokenId).call();
-                tempAnimalCardArray.push({ animalTokenId, animalType, animalPrice });
-            }
+            const response = await mintAnimalTokenContract.methods
+                .getAnimalTokens(account)
+                .call();
+            // console.log(response);
+            response.map((v: IMyAnimalCard) => {
+                tempAnimalCardArray.push({ 
+                    animalTokenId: v.animalTokenId, 
+                    animalType: v.animalPrice, 
+                    animalPrice: v.animalType 
+                });
+            });
             setAnimalCardArray(tempAnimalCardArray);
         } catch (error) {
             console.error(error);
