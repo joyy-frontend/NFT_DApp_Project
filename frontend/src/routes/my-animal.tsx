@@ -22,12 +22,12 @@ const MyAnimal: FC<MyAnimalProps> = ({ account }) => {
             const response = await mintAnimalTokenContract.methods
                 .getAnimalTokens(account)
                 .call();
-            // console.log(response);
+            
             response.map((v: IMyAnimalCard) => {
                 tempAnimalCardArray.push({ 
                     animalTokenId: v.animalTokenId, 
-                    animalType: v.animalPrice, 
-                    animalPrice: v.animalType 
+                    animalType: v.animalType, 
+                    animalPrice: v.animalPrice 
                 });
             });
             setAnimalCardArray(tempAnimalCardArray);

@@ -2,4 +2,4 @@
 
 Solidity, React, TypeScript, Web3.js 연동
 
-Polygon, Metamask, openzeppelin
+Polygon, Metamask, OpenZeppelin

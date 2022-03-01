@@ -50,7 +50,6 @@ const MyAnimalCard: FC<MyAnimalCardProps> = ({
         <Box textAlign="center" w={150}>
             <AnimalCard animalType={animalType} />
             <Box mt={2}>
-                { console.log(myAnimalPrice) }
                 { myAnimalPrice === "0" ? (
                 <>
                     <InputGroup>
