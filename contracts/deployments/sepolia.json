@@ -1,0 +1,5 @@
+{
+  "network": "sepolia",
+  "mintAnimalTokenAddress": "0xf3B435a025A73A394a7E063f9293B7433c5e37D4",
+  "saleAnimalTokenAddress": "0x87B16A2A448ad65Af4e185f85f3456D1310EaF3A"
+}

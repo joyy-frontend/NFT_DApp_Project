@@ -496,27 +496,58 @@ const saleAnimalTokenAbi: AbiItem[] = [
 		"stateMutability": "payable",
 		"type": "function"
 	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_animalTokenId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_price",
-				"type": "uint256"
-			}
-		],
-		"name": "setForSaleAnimalToken",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_animalTokenId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_price",
+					"type": "uint256"
+				}
+			],
+			"name": "setForSaleAnimalToken",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_animalTokenId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_price",
+					"type": "uint256"
+				}
+			],
+			"name": "updateAnimalTokenPrice",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_animalTokenId",
+					"type": "uint256"
+				}
+			],
+			"name": "cancelSaleAnimalToken",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
 				"internalType": "address",
 				"name": "_mintAnimalTokenAddress",
 				"type": "address"
@@ -610,8 +641,10 @@ const saleAnimalTokenAbi: AbiItem[] = [
 	}
 ];
 
-const mintAnimalTokenAddress = "0x57Da957f94aE1Aa6286c8c850e82Eac736ce915B";
-export const saleAnimalTokenAddress = "0xa551714689A3e2f909401ed0b47b5B0caF0cd464";
+const mintAnimalTokenAddress =
+	process.env.REACT_APP_MINT_ANIMAL_TOKEN_ADDRESS || "0x57Da957f94aE1Aa6286c8c850e82Eac736ce915B";
+export const saleAnimalTokenAddress =
+	process.env.REACT_APP_SALE_ANIMAL_TOKEN_ADDRESS || "0xa551714689A3e2f909401ed0b47b5B0caF0cd464";
 
 export const web3 = new Web3(window.ethereum);
 

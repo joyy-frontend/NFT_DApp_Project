@@ -1,5 +1,15 @@
 {
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "deploy:sale:sepolia": "hardhat run scripts/deploy-sale.js --network sepolia"
+  },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.5.0"
-  }
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "@openzeppelin/contracts": "^4.5.0",
+    "dotenv": "^16.4.7",
+    "ethers": "^6.13.5",
+    "hardhat": "^2.22.17"
+  },
+  "devDependencies": {}
 }

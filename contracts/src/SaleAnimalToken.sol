@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.0;
 
-import "MintAnimalToken.sol";
+import "./MintAnimalToken.sol";
 
 contract SaleAnimalToken {
     MintAnimalToken public mintAnimalTokenAddress;  // MintAnimalToken을 deploy하면 배포한 주소값이 나오는데 그값을  MintAnimalToken 변수에 담는다. (아래 생성자를 통해서 담는다)
@@ -27,6 +27,26 @@ contract SaleAnimalToken {
         onSaleAnimalTokenArray.push(_animalTokenId);    // 판매중인 토큰은 푸시.
     } 
 
+    function updateAnimalTokenPrice(uint256 _animalTokenId, uint256 _price) public {
+        address animalTokenOwner = mintAnimalTokenAddress.ownerOf(_animalTokenId);
+
+        require(animalTokenOwner == msg.sender, "Caller is not animal token owner.");
+        require(_price > 0, "Price is zero or lower.");
+        require(animalTokenPrices[_animalTokenId] > 0, "Animal token not sale.");
+
+        animalTokenPrices[_animalTokenId] = _price;
+    }
+
+    function cancelSaleAnimalToken(uint256 _animalTokenId) public {
+        address animalTokenOwner = mintAnimalTokenAddress.ownerOf(_animalTokenId);
+
+        require(animalTokenOwner == msg.sender, "Caller is not animal token owner.");
+        require(animalTokenPrices[_animalTokenId] > 0, "Animal token not sale.");
+
+        animalTokenPrices[_animalTokenId] = 0;
+        removeOnSaleAnimalToken(_animalTokenId);
+    }
+
     function purchaseAnimalToken(uint256 _animalTokenId) public payable {
         uint256 price = animalTokenPrices[_animalTokenId];
         address animalTokenOwner = mintAnimalTokenAddress.ownerOf(_animalTokenId);
@@ -43,11 +63,15 @@ contract SaleAnimalToken {
         // mapping에서 제거
         animalTokenPrices[_animalTokenId] = 0;  //가격을 0으로 셋팅
 
-        // 판매중인 목록에서 제거
+        removeOnSaleAnimalToken(_animalTokenId);
+    }
+
+    function removeOnSaleAnimalToken(uint256 _animalTokenId) private {
         for(uint256 i = 0; i < onSaleAnimalTokenArray.length; i++) {
-            if(animalTokenPrices[onSaleAnimalTokenArray[i]] == 0) { // 가격이 0원인걸 찾아 제거
+            if(onSaleAnimalTokenArray[i] == _animalTokenId) {
                 onSaleAnimalTokenArray[i] = onSaleAnimalTokenArray[onSaleAnimalTokenArray.length -1];
                 onSaleAnimalTokenArray.pop();
+                break;
             }
         }
     }

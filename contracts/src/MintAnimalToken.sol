@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
-import "SaleAnimalToken.sol";
+import "./SaleAnimalToken.sol";
 
 contract MintAnimalToken is ERC721Enumerable {
     constructor() ERC721("h662Animals", "HAS") {}
